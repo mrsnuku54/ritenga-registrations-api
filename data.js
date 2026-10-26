@@ -17,3 +17,10 @@ export async function addRegistration(newPerson) {
   await fs.writeFile(filePath, text, 'utf-8')
   return newPerson
 }
+
+export async function deleteRegistration(id) {
+  const registrations = await getAllRegistrations()                 
+  const remaining = registrations.filter((person) => person.id !== id) 
+  const text = JSON.stringify(remaining, null, 2)                   
+  await fs.writeFile(filePath, text, 'utf-8')   
+}
